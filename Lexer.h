@@ -3,6 +3,9 @@
 #include <stdexcept>
 #include "Token.h"
 
+#ifndef HEADER_ATLAS_LEXER
+#define HEADER_ATLAS_LEXER
+
 
 class SyntaxError : public std::exception {
 
@@ -23,3 +26,5 @@ private:
 };
 
 std::vector<Token> tokenize(const std::string &source);
+
+#endif

@@ -1,5 +1,8 @@
 #include <string>
 
+#ifndef HEADER_ATLAS_TOKEN
+#define HEADER_ATLAS_TOKEN
+
 enum class TokenType {
     IDENTIFIER, // [a-zA-Z][a-zA-Z0-9]*  n, y6, asdfa, U4453445
     INT,        // [0-9]+  0 11212 555 21085 000011
@@ -30,3 +33,5 @@ struct Token {
 };
 
 std::string get_token_type_name(TokenType type);
+
+#endif

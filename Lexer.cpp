@@ -1,16 +1,22 @@
 #include "Lexer.h"
 #include <iostream>
 
-bool is_alpha(char c) {
+// add include guards ifdef to headers files -> done
+// add static to functions -> done
+// simplify switch, make it into function
+// fix comments
+// maybe rewrite it to the class. Learn why into deep knowledge
+
+static bool is_alpha(char c) {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
 
-bool is_digit(char c) {
+static bool is_digit(char c) {
     return c >= '0' && c <= '9';
 }
 
 
-TokenType parse_token_type(const std::string& source, int& pos) {
+static TokenType parse_token_type(const std::string& source, int& pos) {
     char c = source[pos];
     pos++; // Advance position
 
@@ -37,10 +43,10 @@ TokenType parse_token_type(const std::string& source, int& pos) {
         return TokenType::PLUS;
 
     case'/':
-        if (pos < source.length && source[pos] == '/') {
+        if (pos < source.length() && source[pos] == '/') {
             pos++;
 
-            while (pos < source.length && source[pos] != '/') {
+            while (pos < source.length() && source[pos] != '/') {
                 pos++;
             }
 
@@ -63,7 +69,7 @@ TokenType parse_token_type(const std::string& source, int& pos) {
             while (pos < source.length() && is_digit(source[pos])) {
                 pos++;
             }
-            return TokenType::INT
+            return TokenType::INT;
         }
 
         throw SyntaxError(pos - 1, "invalid character");
