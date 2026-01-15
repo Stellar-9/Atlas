@@ -2,6 +2,7 @@
 #include "Lexer.h"
 
 int main() {
+
     try {
         
         std::string source = "while (i) + 123";

@@ -3,7 +3,8 @@
 
 // add include guards ifdef to headers files -> done
 // add static to functions -> done
-// simplify switch, make it into function
+// simplify switch, make it into function -> done
+// simplify switch, make it into function -> done
 // fix comments
 // maybe rewrite it to the class. Learn why into deep knowledge
 
@@ -13,6 +14,47 @@ static bool is_alpha(char c) {
 
 static bool is_digit(char c) {
     return c >= '0' && c <= '9';
+}
+
+static void consume_while(const std::string& source, int& pos, bool (*condition)(char)) {
+
+    while (pos < source.length() && condition(source[pos])) {
+        pos++;
+    }
+
+}
+
+static bool is_alphanumeric(char c) {
+    return is_alpha(c) || is_digit(c);
+}
+
+static TokenType parse_slash(const std::string& source, int& pos) {
+    if (pos < source.length() && source[pos] == '/') {
+        pos++;
+
+        while (pos < source.length() && source[pos] != '/') {
+            pos++;
+        }
+
+        return TokenType::WHITESPACE;
+    }
+
+    return TokenType::SLASH;
+
+}
+
+static TokenType parse_plus(const std::string& source, int& pos) {
+    if (pos < source.length()) { // Safety check
+        if (source[pos] == '=') {
+            pos += 1;
+            return TokenType::PLUS_EQ;
+        }
+        if (source[pos] == '+') {
+            pos += 1;
+            return TokenType::PLUS_PLUS;
+        }
+    }
+    return TokenType::PLUS;
 }
 
 
@@ -30,45 +72,18 @@ static TokenType parse_token_type(const std::string& source, int& pos) {
     case ')':
         return TokenType::RPAREN;
     case '+':
-        if (pos < source.length()) { // Safety check
-            if (source[pos] == '=') {
-                pos += 1;
-                return TokenType::PLUS_EQ;
-            }
-            if (source[pos] == '+') {
-                pos += 1;
-                return TokenType::PLUS_PLUS;
-            }
-        }
-        return TokenType::PLUS;
-
+        return parse_plus(source, pos);
     case'/':
-        if (pos < source.length() && source[pos] == '/') {
-            pos++;
-
-            while (pos < source.length() && source[pos] != '/') {
-                pos++;
-            }
-
-            return TokenType::WHITESPACE;
-        }
-
-        return TokenType::SLASH;
-
-
+        return parse_slash(source, pos);
     default:
         if (is_alpha(c)) {
             // Keep eating characters while they are letters or numbers
-            while (pos < source.length() && (is_alpha(source[pos]) || is_digit(source[pos]))) {
-                pos++;
-            }
+            consume_while(source, pos, is_alphanumeric);
             return TokenType::IDENTIFIER;
         }
 
         else if (is_digit(c)) {
-            while (pos < source.length() && is_digit(source[pos])) {
-                pos++;
-            }
+            consume_while(source, pos, is_digit);
             return TokenType::INT;
         }
 
