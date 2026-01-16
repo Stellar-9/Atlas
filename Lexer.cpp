@@ -32,7 +32,7 @@ static TokenType parse_slash(const std::string& source, int& pos) {
     if (pos < source.length() && source[pos] == '/') {
         pos++;
 
-        while (pos < source.length() && source[pos] != '/') {
+        while (pos < source.length() && source[pos] == '\n') {
             pos++;
         }
 
