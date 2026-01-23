@@ -1,12 +1,8 @@
 #include "Lexer.h"
 #include <iostream>
 
-// add include guards ifdef to headers files -> done
-// add static to functions -> done
-// simplify switch, make it into function -> done
-// simplify switch, make it into function -> done
-// fix comments
-// maybe rewrite it to the class. Learn why into deep knowledge
+// add EOF token
+// maybe rewrite it to the class
 
 static bool is_alpha(char c) {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
@@ -57,6 +53,40 @@ static TokenType parse_plus(const std::string& source, int& pos) {
     return TokenType::PLUS;
 }
 
+static TokenType parse_minus(const std::string& source, int& pos) {
+    if (pos < source.length()) { // Safety check
+        if (source[pos] == '=') {
+            pos += 1;
+            return TokenType::MINUS_EQ;
+        }
+        if (source[pos] == '-') {
+            pos += 1;
+            return TokenType::MINUS_MINUS;
+        }
+    }
+    return TokenType::MINUS;
+}
+
+static TokenType parse_star(const std::string& source, int& pos) {
+    if (pos < source.length()) { // Safety check
+        if (source[pos] == '=') {
+            pos += 1;
+            return TokenType::STAR_EQ;
+        }
+    }
+    return TokenType::STAR;
+}
+
+static TokenType parse_equal(const std::string& source, int& pos) {
+    if (pos < source.length()) { // Safety check
+        if (source[pos] == '=') {
+            pos += 1;
+            return TokenType::EQ_EQ;
+        }
+    }
+    return TokenType::EQ;
+}
+
 
 static TokenType parse_token_type(const std::string& source, int& pos) {
     char c = source[pos];
@@ -73,6 +103,14 @@ static TokenType parse_token_type(const std::string& source, int& pos) {
         return TokenType::RPAREN;
     case '+':
         return parse_plus(source, pos);
+    case '-':
+        return parse_minus(source, pos);
+    case '*':
+        return parse_star(source, pos);
+    case '=':
+        return parse_equal(source, pos);
+    case ';':
+        return TokenType::SEMICOLON;
     case'/':
         return parse_slash(source, pos);
     default:

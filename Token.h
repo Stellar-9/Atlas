@@ -1,7 +1,7 @@
-#include <string>
-
 #ifndef HEADER_ATLAS_TOKEN
 #define HEADER_ATLAS_TOKEN
+
+#include <string>
 
 enum class TokenType {
     IDENTIFIER, // [a-zA-Z][a-zA-Z0-9]*  n, y6, asdfa, U4453445
@@ -11,13 +11,17 @@ enum class TokenType {
     LBRACE,     // }
     RBRACE,     // {
     EQ,         // =
+    EQ_EQ,      // ==
     LT,         // <
     LT_EQ,      // <=
     PLUS_PLUS,  // ++
     PLUS_EQ,    // +=
     PLUS,       // +
     MINUS,      // -
+    MINUS_MINUS,        // --
+    MINUS_EQ,   // -=
     STAR,       // *
+    STAR_EQ,    // *=
     SLASH,      // /
     SEMICOLON,  // ;
     KW_INT,     // int

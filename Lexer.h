@@ -1,10 +1,10 @@
+#ifndef HEADER_ATLAS_LEXER
+#define HEADER_ATLAS_LEXER
+
 #include <vector>
 #include <string>
 #include <stdexcept>
 #include "Token.h"
-
-#ifndef HEADER_ATLAS_LEXER
-#define HEADER_ATLAS_LEXER
 
 
 class SyntaxError : public std::exception {
