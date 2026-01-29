@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Build](https://img.shields.io/badge/build-CMake-orange.svg)
 
-**Atlas** is an educational compiler built from scratch in modern C++. It is designed to demonstrate core compiler concepts including lexical analysis, recursive descent parsing, and Abstract Syntax Trees (AST) using robust memory management.
+**Atlas** is an educational in progress compiler built from scratch in modern C++. It is designed to demonstrate core compiler concepts including lexical analysis, recursive descent parsing, and Abstract Syntax Trees (AST) using robust memory management.
 
 ---
 
