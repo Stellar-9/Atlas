@@ -24,7 +24,6 @@ The project follows a standard C++ directory layout:
 
 - **include/**: Header files (.h) defining interfaces (Lexer, Token, AST).
 - **src/**: Source files (.cpp) implementing the logic.
-- **examples/**: Sample `.atlas` scripts to test the language.
 - **CMakeLists.txt**: Build configuration.
 
 ---
