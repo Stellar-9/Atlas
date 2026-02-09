@@ -1,7 +1,6 @@
 #include "Lexer.h"
 #include <iostream>
 
-// add EOF token
 // maybe rewrite it to the class
 
 static bool is_alpha(char c) {
@@ -202,6 +201,8 @@ std::string get_token_type_name(TokenType type) {
         return "IDENTIFIER";
     case TokenType::KW_INT:
         return "KW_INT";
+    case TokenType::INT:
+        return "INT";
     case TokenType::KW_WHILE:
         return "KW_WHILE";
     case TokenType::LPAREN:

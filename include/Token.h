@@ -28,6 +28,7 @@ enum class TokenType {
     KW_WHILE,   // while
     KW_RETURN,  // return
     WHITESPACE, // whitespace
+    TK_EOF,
 };
 
 struct Token {

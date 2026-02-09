@@ -7,7 +7,7 @@ set(SOURCES
 	src/Lexer.cpp
 )
 
-add_executable(Atlas ${SOURCES})
+add_executable(Atlas ${SOURCES} "include/AST.h" "include/Parser.h" "src/Parser.cpp")
 
 target_include_directories(Atlas PRIVATE include)
 

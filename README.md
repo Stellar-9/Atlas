@@ -1,4 +1,4 @@
-﻿# Atlas Compiler
+﻿# 🗺️ Atlas Compiler
 
 ![Language](https://img.shields.io/badge/language-C++17-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
